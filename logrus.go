@@ -159,6 +159,13 @@ type FieldLogger interface {
 	Fatal(args ...interface{})
 	Panic(args ...interface{})
 
+	DebugOnErr(err error, args ...interface{})
+	InfoOnErr(err error, args ...interface{})
+	WarnOnErr(err error, args ...interface{})
+	ErrorOnErr(err error, args ...interface{})
+	FatalOnErr(err error, args ...interface{})
+	PanicOnErr(err error, args ...interface{})
+
 	Debugln(args ...interface{})
 	Infoln(args ...interface{})
 	Println(args ...interface{})
