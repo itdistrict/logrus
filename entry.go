@@ -75,6 +75,9 @@ type Entry struct {
 
 	// err may contain a field formatting error
 	err string
+
+	// suppress is true, if we dont want to log this entry
+	suppress bool
 }
 
 func NewEntry(logger *Logger) *Entry {
@@ -140,6 +143,11 @@ func (entry *Entry) WithFields(fields Fields) *Entry {
 		}
 	}
 	return &Entry{Logger: entry.Logger, Data: data, Time: entry.Time, err: fieldErr, Context: entry.Context}
+}
+
+func (entry *Entry) OnErrWithFields(err error, fields Fields) *Entry {
+	entry.suppress = err != nil
+	return entry.WithFields(fields)
 }
 
 // Overrides the time of the Entry.
@@ -264,7 +272,9 @@ func (entry *Entry) write() {
 
 func (entry *Entry) Log(level Level, args ...interface{}) {
 	if entry.Logger.IsLevelEnabled(level) {
-		entry.log(level, fmt.Sprint(args...))
+		if !entry.suppress {
+			entry.log(level, fmt.Sprint(args...))
+		}
 	}
 }
 
@@ -298,12 +308,16 @@ func (entry *Entry) Error(args ...interface{}) {
 
 func (entry *Entry) Fatal(args ...interface{}) {
 	entry.Log(FatalLevel, args...)
-	entry.Logger.Exit(1)
+	if !entry.suppress {
+		entry.Logger.Exit(1)
+	}
 }
 
 func (entry *Entry) Panic(args ...interface{}) {
 	entry.Log(PanicLevel, args...)
-	panic(fmt.Sprint(args...))
+	if !entry.suppress {
+		panic(fmt.Sprint(args...))
+	}
 }
 
 func (entry *Entry) TraceOnErr(err error, args ...interface{}) {
@@ -400,7 +414,8 @@ func (entry *Entry) Errorf(format string, args ...interface{}) {
 
 func (entry *Entry) Fatalf(format string, args ...interface{}) {
 	entry.Logf(FatalLevel, format, args...)
-	entry.Logger.Exit(1)
+	if !entry.suppress {
+	}
 }
 
 func (entry *Entry) Panicf(format string, args ...interface{}) {

@@ -80,6 +80,11 @@ func WithFields(fields Fields) *Entry {
 	return std.WithFields(fields)
 }
 
+func OnErrWithFields(err error, fields Fields) *Entry {
+	return std.OnErrWithFields(err, fields)
+
+}
+
 // WithTime creats an entry from the standard logger and overrides the time of
 // logs generated with it.
 //
