@@ -6,8 +6,8 @@ import (
 	"log/syslog"
 	"os"
 
-	"github.com/sirupsen/logrus"
-	slhooks "github.com/sirupsen/logrus/hooks/syslog"
+	"github.com/itdistrict/logrus"
+	slhooks "github.com/itdistrict/logrus/hooks/syslog"
 )
 
 // An example on how to use a hook

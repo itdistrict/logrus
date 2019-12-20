@@ -5,8 +5,8 @@
 ```go
 import (
   "log/syslog"
-  "github.com/sirupsen/logrus"
-  lSyslog "github.com/sirupsen/logrus/hooks/syslog"
+  "github.com/itdistrict/logrus"
+  lSyslog "github.com/itdistrict/logrus/hooks/syslog"
 )
 
 func main() {
@@ -24,8 +24,8 @@ If you want to connect to local syslog (Ex. "/dev/log" or "/var/run/syslog" or "
 ```go
 import (
   "log/syslog"
-  "github.com/sirupsen/logrus"
-  lSyslog "github.com/sirupsen/logrus/hooks/syslog"
+  "github.com/itdistrict/logrus"
+  lSyslog "github.com/itdistrict/logrus/hooks/syslog"
 )
 
 func main() {
