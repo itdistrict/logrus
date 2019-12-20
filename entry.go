@@ -306,6 +306,62 @@ func (entry *Entry) Panic(args ...interface{}) {
 	panic(fmt.Sprint(args...))
 }
 
+func (entry *Entry) TraceOnErr(err error, args ...interface{}) {
+	if err != nil {
+		entry.Log(TraceLevel, args...)
+	}
+}
+
+func (entry *Entry) DebugOnErr(err error, args ...interface{}) {
+	if err != nil {
+		entry.Log(DebugLevel, args...)
+	}
+}
+
+func (entry *Entry) PrintOnErr(err error, args ...interface{}) {
+	if err != nil {
+		entry.Info(args...)
+	}
+}
+
+func (entry *Entry) InfoOnErr(err error, args ...interface{}) {
+	if err != nil {
+		entry.Log(InfoLevel, args...)
+	}
+}
+
+func (entry *Entry) WarnOnErr(err error, args ...interface{}) {
+	if err != nil {
+		entry.Log(WarnLevel, args...)
+	}
+}
+
+func (entry *Entry) WarningOnErr(err error, args ...interface{}) {
+	if err != nil {
+		entry.Warn(args...)
+	}
+}
+
+func (entry *Entry) ErrorOnErr(err error, args ...interface{}) {
+	if err != nil {
+		entry.Log(ErrorLevel, args...)
+	}
+}
+
+func (entry *Entry) FatalOnErr(err error, args ...interface{}) {
+	if err != nil {
+		entry.Log(FatalLevel, args...)
+		entry.Logger.Exit(1)
+	}
+}
+
+func (entry *Entry) PanicOnErr(err error, args ...interface{}) {
+	if err != nil {
+		entry.Log(PanicLevel, args...)
+		panic(fmt.Sprint(args...))
+	}
+}
+
 // Entry Printf family functions
 
 func (entry *Entry) Logf(level Level, format string, args ...interface{}) {
