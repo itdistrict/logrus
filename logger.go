@@ -198,12 +198,29 @@ func (logger *Logger) Trace(args ...interface{}) {
 	logger.Log(TraceLevel, args...)
 }
 
+func (logger *Logger) TraceOnErr(err error, args ...interface{}) {
+	if err != nil {
+		logger.Log(TraceLevel, args...)
+	}
+}
+
 func (logger *Logger) Debug(args ...interface{}) {
 	logger.Log(DebugLevel, args...)
 }
 
+func (logger *Logger) DebugOnErr(err error, args ...interface{}) {
+	if err != nil {
+		logger.Log(DebugLevel, args...)
+	}
+}
+
 func (logger *Logger) Info(args ...interface{}) {
 	logger.Log(InfoLevel, args...)
+}
+func (logger *Logger) InfoOnErr(err error, args ...interface{}) {
+	if err != nil {
+		logger.Log(InfoLevel, args...)
+	}
 }
 
 func (logger *Logger) Print(args ...interface{}) {
@@ -216,6 +233,12 @@ func (logger *Logger) Warn(args ...interface{}) {
 	logger.Log(WarnLevel, args...)
 }
 
+func (logger *Logger) WarnOnErr(err error, args ...interface{}) {
+	if err != nil {
+		logger.Log(WarnLevel, args...)
+	}
+}
+
 func (logger *Logger) Warning(args ...interface{}) {
 	logger.Warn(args...)
 }
@@ -223,14 +246,32 @@ func (logger *Logger) Warning(args ...interface{}) {
 func (logger *Logger) Error(args ...interface{}) {
 	logger.Log(ErrorLevel, args...)
 }
+func (logger *Logger) ErrorOnErr(err error, args ...interface{}) {
+	if err != nil {
+		logger.Log(ErrorLevel, args...)
+	}
+}
 
 func (logger *Logger) Fatal(args ...interface{}) {
 	logger.Log(FatalLevel, args...)
 	logger.Exit(1)
 }
 
+func (logger *Logger) FatalOnErr(err error, args ...interface{}) {
+	if err != nil {
+		logger.Log(FatalLevel, args...)
+		logger.Exit(1)
+	}
+}
+
 func (logger *Logger) Panic(args ...interface{}) {
 	logger.Log(PanicLevel, args...)
+}
+
+func (logger *Logger) PanicOnErr(err error, args ...interface{}) {
+	if err != nil {
+		logger.Log(PanicLevel, args...)
+	}
 }
 
 func (logger *Logger) Logln(level Level, args ...interface{}) {
