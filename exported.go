@@ -134,6 +134,46 @@ func Fatal(args ...interface{}) {
 	std.Fatal(args...)
 }
 
+// TraceOnErr logs a message at level Trace on the standard logger.
+func TraceOnErr(err error, args ...interface{}) {
+	std.TraceOnErr(err, args...)
+}
+
+// DebugOnErr logs a message at level Debug on the standard logger.
+func DebugOnErr(err error, args ...interface{}) {
+	std.DebugOnErr(err, args...)
+}
+
+// InfoOnErr logs a message at level Info on the standard logger.
+func InfoOnErr(err error, args ...interface{}) {
+	std.InfoOnErr(err, args...)
+}
+
+// WarnOnErr logs a message at level Warn on the standard logger.
+func WarnOnErr(err error, args ...interface{}) {
+	std.WarnOnErr(err, args...)
+}
+
+// WarningOnErr logs a message at level Warn on the standard logger.
+func WarningOnErr(err error, args ...interface{}) {
+	std.WarnOnErr(err, args...)
+}
+
+// ErrorOnErr logs a message at level Error on the standard logger.
+func ErrorOnErr(err error, args ...interface{}) {
+	std.ErrorOnErr(err, args...)
+}
+
+// PanicOnErr logs a message at level Panic on the standard logger.
+func PanicOnErr(err error, args ...interface{}) {
+	std.PanicOnErr(err, args...)
+}
+
+// FatalOnErr logs a message at level Fatal on the standard logger then the process will exit with status set to 1.
+func FatalOnErr(err error, args ...interface{}) {
+	std.FatalOnErr(err, args...)
+}
+
 // Tracef logs a message at level Trace on the standard logger.
 func Tracef(format string, args ...interface{}) {
 	std.Tracef(format, args...)
