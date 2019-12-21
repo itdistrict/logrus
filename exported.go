@@ -80,8 +80,8 @@ func WithFields(fields Fields) *Entry {
 	return std.WithFields(fields)
 }
 
-func OnErrWithFields(err error, fields Fields) *Entry {
-	return std.OnErrWithFields(err, fields)
+func OnError(err error, fields Fields) *Entry {
+	return std.OnError(err, fields)
 
 }
 

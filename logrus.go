@@ -139,7 +139,7 @@ type StdLogger interface {
 type FieldLogger interface {
 	WithField(key string, value interface{}) *Entry
 	WithFields(fields Fields) *Entry
-	OnErrWithFields(err error, fields Fields) *Entry
+	OnError(err error, fields Fields) *Entry
 	WithError(err error) *Entry
 
 	Debugf(format string, args ...interface{})

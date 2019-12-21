@@ -145,7 +145,7 @@ func (entry *Entry) WithFields(fields Fields) *Entry {
 	return &Entry{Logger: entry.Logger, Data: data, Time: entry.Time, err: fieldErr, Context: entry.Context}
 }
 
-func (entry *Entry) OnErrWithFields(err error, fields Fields) *Entry {
+func (entry *Entry) OnError(err error, fields Fields) *Entry {
 	entry.suppress = err != nil
 	return entry.WithFields(fields)
 }

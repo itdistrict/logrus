@@ -117,10 +117,10 @@ func (logger *Logger) WithFields(fields Fields) *Entry {
 	return entry.WithFields(fields)
 }
 
-func (logger *Logger) OnErrWithFields(err error, fields Fields) *Entry {
+func (logger *Logger) OnError(err error, fields Fields) *Entry {
 	entry := logger.newEntry()
 	defer logger.releaseEntry(entry)
-	return entry.OnErrWithFields(err, fields)
+	return entry.OnError(err, fields)
 }
 
 // Add an error as single field to the log entry.  All it does is call
