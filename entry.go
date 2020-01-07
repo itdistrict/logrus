@@ -142,12 +142,14 @@ func (entry *Entry) WithFields(fields Fields) *Entry {
 			data[k] = v
 		}
 	}
-	return &Entry{Logger: entry.Logger, Data: data, Time: entry.Time, err: fieldErr, Context: entry.Context}
+	return &Entry{Logger: entry.Logger, Data: data, Time: entry.Time, err: fieldErr, Context: entry.Context, suppress: entry.suppress}
 }
 
 func (entry *Entry) OnError(err error, fields Fields) *Entry {
-	entry.suppress = err != nil
-	return entry.WithFields(fields)
+	entry.suppress = err == nil
+	newEntry := entry.WithFields(fields)
+	entry.suppress = false //reset to false again
+	return newEntry
 }
 
 // Overrides the time of the Entry.
