@@ -324,13 +324,13 @@ func (entry *Entry) Panic(args ...interface{}) {
 
 func (entry *Entry) TraceOnErr(err error, args ...interface{}) {
 	if err != nil {
-		entry.Log(TraceLevel, args...)
+		entry.Log(TraceLevel, append(args, err.Error())...)
 	}
 }
 
 func (entry *Entry) DebugOnErr(err error, args ...interface{}) {
 	if err != nil {
-		entry.Log(DebugLevel, args...)
+		entry.Log(DebugLevel, append(args, err.Error())...)
 	}
 }
 
@@ -360,20 +360,20 @@ func (entry *Entry) WarningOnErr(err error, args ...interface{}) {
 
 func (entry *Entry) ErrorOnErr(err error, args ...interface{}) {
 	if err != nil {
-		entry.Log(ErrorLevel, args...)
+		entry.Log(ErrorLevel, append(args, err.Error())...)
 	}
 }
 
 func (entry *Entry) FatalOnErr(err error, args ...interface{}) {
 	if err != nil {
-		entry.Log(FatalLevel, args...)
+		entry.Log(FatalLevel, append(args, err.Error())...)
 		entry.Logger.Exit(1)
 	}
 }
 
 func (entry *Entry) PanicOnErr(err error, args ...interface{}) {
 	if err != nil {
-		entry.Log(PanicLevel, args...)
+		entry.Log(PanicLevel, append(args, err.Error())...)
 		panic(fmt.Sprint(args...))
 	}
 }

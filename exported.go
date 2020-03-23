@@ -141,12 +141,12 @@ func Fatal(args ...interface{}) {
 
 // TraceOnErr logs a message at level Trace on the standard logger.
 func TraceOnErr(err error, args ...interface{}) {
-	std.TraceOnErr(err, args...)
+	std.TraceOnErr(err, append(args, err.Error())...)
 }
 
 // DebugOnErr logs a message at level Debug on the standard logger.
 func DebugOnErr(err error, args ...interface{}) {
-	std.DebugOnErr(err, args...)
+	std.DebugOnErr(err, append(args, err.Error())...)
 }
 
 // InfoOnErr logs a message at level Info on the standard logger.
@@ -166,17 +166,17 @@ func WarningOnErr(err error, args ...interface{}) {
 
 // ErrorOnErr logs a message at level Error on the standard logger.
 func ErrorOnErr(err error, args ...interface{}) {
-	std.ErrorOnErr(err, args...)
+	std.ErrorOnErr(err, append(args, err.Error())...)
 }
 
 // PanicOnErr logs a message at level Panic on the standard logger.
 func PanicOnErr(err error, args ...interface{}) {
-	std.PanicOnErr(err, args...)
+	std.PanicOnErr(err, append(args, err.Error())...)
 }
 
 // FatalOnErr logs a message at level Fatal on the standard logger then the process will exit with status set to 1.
 func FatalOnErr(err error, args ...interface{}) {
-	std.FatalOnErr(err, args...)
+	std.FatalOnErr(err, append(args, err.Error())...)
 }
 
 // Tracef logs a message at level Trace on the standard logger.
